@@ -1,0 +1,56 @@
+{
+  "name": "additional-listing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roomNboard/Additional-Listing.git"
+  },
+  "author": "Xue Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roomNboard/Additional-Listing/issues"
+  },
+  "homepage": "https://github.com/roomNboard/Additional-Listing#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "prop-types": "^15.6.1",
+    "rc-slider": "^8.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-image-gallery": "^0.8.8",
+    "react-star-ratings": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.1.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "nodemon": "^1.17.5",
+    "puppeteer": "^1.4.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.5"
+  }
+}
+
