@@ -68,15 +68,16 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
+const numOfRecords = 10000;
 
-const regionId = getNumberForAllEntries(1, 5, 20)
-const allRoomNames = getWordsForAllEntries(loremIpsum, 20, 3);
-const allPrices = getNumberForAllEntries(50, 750, 20);
-const allNumberOfRooms = getNumberForAllEntries(1, 7, 20);
-const allRatings = getNumberForAllEntries(1, 5, 20);
-const allNumberOfReviews = getNumberForAllEntries(0, 500, 20);
-const allRoomTypes = getWordsForAllEntries(roomTypes, 20, 1);
-const allInstantBooks = getWordsForAllEntries(trueFalse, 20, 1);
+const regionId = getNumberForAllEntries(1, 5, numOfRecords )
+const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
+const allPrices = getNumberForAllEntries(50, 750, numOfRecords );
+const allNumberOfRooms = getNumberForAllEntries(1, 7, numOfRecords );
+const allRatings = getNumberForAllEntries(1, 5, numOfRecords );
+const allNumberOfReviews = getNumberForAllEntries(0, 500, numOfRecords );
+const allRoomTypes = getWordsForAllEntries(roomTypes, numOfRecords, 1);
+const allInstantBooks = getWordsForAllEntries(trueFalse, numOfRecords, 1);
 
 const allUrls = getRoomPicUrl(20);
 
@@ -100,7 +101,6 @@ const createRoomlistRecords = (columns) => {
     });
     records = `${records}\n${record.join(',')}`;
   }
-  console.log(records);
   return records;
 };
 
