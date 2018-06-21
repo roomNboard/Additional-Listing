@@ -1,0 +1,24 @@
+region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook
+1,Ut Nisi,742,1,4,456,Entire Guest Suite,F
+3,Massa Aptent Ante,140,2,4,491,Entire Apartment,F
+1,Elit Hendrerit,698,1,5,386,Shared Room,T
+4,Vitae Dictumst Ullamcorper,706,3,4,28,Entire Guest Suite,T
+1,Aenean,435,1,2,14,Entire Apartment,T
+4,Cursus Molestie,661,7,5,106,Entire Guest House,F
+3,Auctor Rhoncus Pharetra,510,6,2,109,Shared Room,T
+3,Aliquam Non,719,2,2,492,Entire Guest House,T
+1,Sem Pharetra Aliquam,711,1,5,312,Entire Apartment,T
+3,Elit Aenean Viverra,485,1,5,43,Entire Apartment,F
+3,Nam,299,5,4,205,Private Room,T
+5,Amet Varius Interdum,576,3,5,132,Shared Room,F
+4,Tristique,101,7,2,110,Entire Guest Suite,F
+1,Integer Euismod Lacinia,216,2,4,460,Entire House,F
+5,Mi Ullamcorper,300,5,3,462,Entire House,T
+4,At,673,3,4,238,Entire House,T
+3,Phasellus,451,1,4,443,Entire Guest Suite,F
+1,A Arcu,738,2,5,255,Entire House,T
+2,Odio Convallis Metus,165,6,5,397,Entire Guest House,T
+1,Malesuada Viverra,689,2,2,284,Private Room,F
+2,Vehicula Ut Donec,566,1,3,384,Private Room,F
+2,Consequat Pulvinar,562,1,5,355,Private Room,T
+2,Enim Urna Euismod,246,7,2,281,Entire Apartment,T

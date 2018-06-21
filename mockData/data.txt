@@ -1,1 +1,20 @@
-Imperdiet,388,5,3,189,Private Room,F,Quisque Pellentesque,489,5,2,338,Entire Guest House,T,Habitant Quisque Gravida,640,3,2,143,Entire Guest Suite,F,Quis Nam,202,4,1,162,Private Room,F,Amet Risus,595,2,1,162,Shared Room,T,Aptent Rhoncus,599,2,1,175,Entire Guest Suite,T,Consequat,512,4,1,179,Entire Apartment,T,Donec Eros Phasellus,296,7,1,150,Entire Guest Suite,T,Ullamcorper Felis Hac,229,2,2,227,Entire House,F,Per Nec Conubia,167,4,3,305,Shared Room,T,Malesuada,182,6,1,464,Entire Guest Suite,T,Est Viverra Condimentum,108,7,2,395,Entire Guest Suite,T,Egestas Fames,637,1,1,241,Entire House,F,Tempor Amet,179,1,2,206,Entire Guest House,F,Ullamcorper,543,2,4,409,Shared Room,T,A,447,7,3,81,Entire Apartment,F,Ante,251,5,2,403,Shared Room,F,Amet Euismod Convallis,674,2,3,301,Entire Apartment,T,Augue Eu Volutpat,133,2,4,310,Entire Apartment,T,Nunc,603,7,2,385,Shared Room,F
+5,Hac Luctus Condimentum,747,6,4,213,Entire Apartment,T
+,1,Donec Volutpat,295,7,2,286,Shared Room,F
+,5,At Praesent Non,460,5,1,498,Entire House,F
+,1,Ultrices Venenatis Habitant,450,5,4,188,Entire Guest House,T
+,1,Cursus Integer,507,7,5,459,Shared Room,T
+,2,Aenean Praesent Imperdiet,356,4,4,122,Entire Guest House,F
+,3,Proin,355,2,2,376,Entire House,T
+,2,Sed Odio Auctor,502,3,4,137,Entire Guest House,F
+,5,Sapien,649,6,3,65,Entire Guest Suite,F
+,5,Non Eget Ornare,586,7,1,248,Entire Guest Suite,F
+,4,Est Molestie,243,2,3,348,Private Room,T
+,3,Primis Nisl Vitae,360,4,3,227,Entire Apartment,T
+,4,Scelerisque Arcu,628,1,3,157,Private Room,F
+,2,Morbi,681,7,4,335,Entire House,F
+,5,Donec Curae Nullam,742,5,1,132,Private Room,F
+,2,Vestibulum,693,2,3,426,Entire Guest Suite,F
+,2,Vestibulum Lacus Mollis,353,4,2,449,Entire House,T
+,5,Placerat Dictumst Accumsan,242,6,3,148,Shared Room,T
+,3,Sed,566,6,3,424,Entire Guest Suite,F
+,2,Enim Ad,241,6,3,95,Entire House,F
