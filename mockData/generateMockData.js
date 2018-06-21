@@ -1,4 +1,5 @@
 const db = require('../database/index.js');
+const fs = require('fs');
 
 const getRandomInteger = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min);
 
@@ -115,5 +116,17 @@ const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) 
 const allRoomlistRecords = createRoomlistRecords(columnData);
 const allImagesRecords = createImagesRecords(20, 6, allUrls);
 
-db.insertRoomlistRecords(allRoomlistRecords);
-db.insertImagesRecords(allImagesRecords);
+// db.insertRoomlistRecords(allRoomlistRecords);
+// db.insertImagesRecords(allImagesRecords);
+
+fs.writeFile('./data.txt',allRoomlistRecords, err => {
+  err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.txt')
+})
+
+
+// fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+//   if (err) return console.log(err);
+//   console.log('Hello World > helloworld.txt');
+// });
+
+
