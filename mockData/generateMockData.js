@@ -68,11 +68,11 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
-const numOfRecords = 10000;
+const numOfRecords = 10000000;
 
-const regionId = getNumberForAllEntries(1, 5, numOfRecords )
+const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
 const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
-const allPrices = getNumberForAllEntries(50, 750, numOfRecords );
+const allPrices = getNumberForAllEntries(50, 1750, numOfRecords );
 const allNumberOfRooms = getNumberForAllEntries(1, 7, numOfRecords );
 const allRatings = getNumberForAllEntries(1, 5, numOfRecords );
 const allNumberOfReviews = getNumberForAllEntries(0, 500, numOfRecords );
