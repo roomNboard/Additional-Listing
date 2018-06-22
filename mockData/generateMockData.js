@@ -1,6 +1,7 @@
 const db = require('../database/index.js');
 const fs = require('fs');
 const { Console } = require('console');
+const file = fs.createWriteStream('imgs.csv');
 
 console.time('generate data')
 
@@ -18,8 +19,8 @@ const getRoomPicUrl = (numberOfEntries) => {
   const allUrls = [];
   for (let i = 0; i < numberOfEntries; i++) {
     for (let j = 0; j < 6; j++) {
-      const houseNumber = 1000 + i;
-      allUrls.push(`https://s3-us-west-1.amazonaws.com/napbnb/${houseNumber}home${j}.jpg`);
+      const imgNum = getRandomInteger(1, 655);
+      allUrls.push(`https://s3-us-west-1.amazonaws.com/roomsnboard/images${imgNum}.jpg`);
     }
   }
   return allUrls;
@@ -79,7 +80,7 @@ const allNumberOfReviews = getNumberForAllEntries(0, 500, numOfRecords );
 const allRoomTypes = getWordsForAllEntries(roomTypes, numOfRecords, 1);
 const allInstantBooks = getWordsForAllEntries(trueFalse, numOfRecords, 1);
 
-const allUrls = getRoomPicUrl(20);
+const allUrls = getRoomPicUrl(numOfRecords);
 
 const columnData = [
   regionId,
@@ -105,7 +106,7 @@ const createRoomlistRecords = (columns) => {
 };
 
 const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) => {
-  const records = [];
+  let records = '';
   let urlNumber = 0;
   for (let i = 1; i <= numberOfEntries; i++) {
     for (let j = 0; j < numberOfPicturesPerListing; j++) {
@@ -113,23 +114,32 @@ const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) 
       record.push(urls[urlNumber]);
       urlNumber += 1;
       record.push(i);
-      records.push(record);
+      records = `${records}\n${record.join(',')}`;
     }
   }
   return records;
 };
 
-const allRoomlistRecords = createRoomlistRecords(columnData);
+// const allRoomlistRecords = createRoomlistRecords(columnData);
 
-// const allImagesRecords = createImagesRecords(20, 6, allUrls);
+const allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
 
 // db.insertRoomlistRecords(allRoomlistRecords);
 // db.insertImagesRecords(allImagesRecords);
 
+//generate and write to csv file 4M records
+// fs.appendFile('./data1.csv', allRoomlistRecords, err => {
+//   err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+// })
 
-fs.appendFile('./data.csv', allRoomlistRecords, err => {
-  err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+// //generate and write to csv file 3M records
+fs.appendFile('./imgs.csv', allImagesRecords, err => {
+  err ? console.log('write file failed =======',err) : console.log('succesfully write file to csv file')
 })
+
+// file.write(allImagesRecords);
+// file.end();
+
 
 console.timeEnd('generate data');
 

@@ -1,3 +1,5 @@
+import { CONNREFUSED } from 'dns';
+
 const express = require('express');
 const db = require('../database/index.js');
 const path = require('path');
@@ -35,3 +37,9 @@ app.get('/filterListings/getRooms', (req, res) => {
 app.get('/filterListings/getImages', (req, res) => {
   db.getAllImagesRecords(res.send.bind(res));
 });
+
+
+//CRUD
+//post - add image to listing
+//update - toggle instant book on listing
+//delete - delete image from listing

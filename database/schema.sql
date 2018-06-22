@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS images;
 CREATE TABLE images (
   id int NOT NULL AUTO_INCREMENT,
   urlToImage varchar(255) NOT NULL,
-  roomId int NOT NULL,
+  property_Id int foreign key REFERENCES properties(id),
   PRIMARY KEY(id)
 );
 
