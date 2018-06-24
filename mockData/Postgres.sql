@@ -15,8 +15,8 @@ CREATE TABLE Properties (
 
 CREATE TABLE images (
   id SERIAL PRIMARY KEY,
-  urlToImage varchar(255) NOT NULL,
-  property_Id int
+  property_Id int REFERENCES properties(id),
+  urlToImage varchar(255) NOT NULL
 );
 
 -- //add 2.5M records
@@ -28,5 +28,5 @@ COPY Properties (region_id,propertyname,price,numberOfBedrooms,rating,numberOfRe
 FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/data2.csv' with DELIMITER ',' csv header;
 
 
-COPY images (urlToImage,property_Id)
-FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/imgs.csv' with DELIMITER ',';
+COPY images (property_id,urlToImage)
+FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/imgs1.csv' with DELIMITER ',' csv header;

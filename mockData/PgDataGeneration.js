@@ -69,7 +69,8 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
-const numOfRecords = 10000000;
+const numOfRecords = 500000;
+let startId = 10000001;
 
 const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
 const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
@@ -105,15 +106,16 @@ const createRoomlistRecords = (columns) => {
   return records;
 };
 
+
 const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) => {
   let records = '';
   let urlNumber = 0;
-  for (let i = 1; i <= numberOfEntries; i++) {
+  for (let i = startId; i <= numberOfEntries + startId -1; i++) {
     for (let j = 0; j < numberOfPicturesPerListing; j++) {
       const record = [];
+      record.push(i);
       record.push(urls[urlNumber]);
       urlNumber += 1;
-      record.push(i);
       records = `${records}\n${record.join(',')}`;
     }
   }
@@ -122,20 +124,27 @@ const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) 
 
 // const allRoomlistRecords = createRoomlistRecords(columnData);
 
-const allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
 
 // db.insertRoomlistRecords(allRoomlistRecords);
 // db.insertImagesRecords(allImagesRecords);
 
 //generate and write to csv file 4M records
 // fs.appendFile('./data1.csv', allRoomlistRecords, err => {
-//   err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
-// })
+  //   err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+  // })
+  
+  // //generate and write to csv file .5M records
 
-// //generate and write to csv file 3M records
-fs.appendFile('./imgs.csv', allImagesRecords, err => {
+let allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
+fs.appendFile('./imgs1.csv', allImagesRecords, err => {
   err ? console.log('write file failed =======',err) : console.log('succesfully write file to csv file')
 })
+
+
+
+
+
+
 
 // file.write(allImagesRecords);
 // file.end();

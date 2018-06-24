@@ -1,1 +1,3 @@
-region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook
+id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urltoimage
+1,212394,'Eu Volutpat',1382,6,2,480,'Entire Guest Suite','T',['https://s3-us-west-1.amazonaws.com/roomsnboard/images309.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images333.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images583.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images248.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images158.jpg']
+2,350526,'Imperdiet Metus Nam',707,4,2,120,'Entire Guest Suite','F',['https://s3-us-west-1.amazonaws.com/roomsnboard/images560.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images190.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images25.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images646.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images460.jpg']
