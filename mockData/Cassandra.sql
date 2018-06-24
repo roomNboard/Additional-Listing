@@ -17,3 +17,7 @@ CREATE TABLE images (
   property_Id int REFERENCES properties(id),
   urlToImage varchar(255)
 );
+
+
+COPY additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urltoimage)
+FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/data.csv'  with header=true;

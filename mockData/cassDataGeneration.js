@@ -1,7 +1,8 @@
 const db = require('../database/index.js');
 const fs = require('fs');
-const { Console } = require('console');
-const file = fs.createWriteStream('imgs.csv');
+var cassandra = require('cassandra-driver');
+var async = require('async');
+var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'additionallisting'});
 
 console.time('generate data')
 
@@ -92,18 +93,18 @@ const columnData = [
   allNumberOfReviews,
   allRoomTypes,
   allInstantBooks
-  // `[${allUrls}]`
 ];
 
 const createRoomlistRecords = (columns) => {
-  let records='';
+  let records=[];
   for (let i = 1; i < columns[0].length; i++) {
     const record = [i];
     columns.forEach((column) => {
       record.push(column[i]);
     });
     let imgUrls = getRoomPicUrl(1);
-    records = `${records}\n${record.join(',')},[${imgUrls}]`;
+    records.push(
+      `INSERT INTO additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urlToImage) VALUES (${record.join(',')},[${imgUrls}])`);
   }
   return records;
 };
@@ -112,13 +113,11 @@ const createRoomlistRecords = (columns) => {
 const allRoomlistRecords = createRoomlistRecords(columnData);
 // console.log(allRoomlistRecords);
 
-// db.insertRoomlistRecords(allRoomlistRecords);
-// db.insertImagesRecords(allImagesRecords);
 
 //generate and write to csv file 4M records
-fs.appendFile('./data.csv', allRoomlistRecords, err => {
-    err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
-})
+// fs.appendFile('./data.csv', allRoomlistRecords, err => {
+//     err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+// })
 
 // console.log(allRoomlistRecords);
 
@@ -127,4 +126,15 @@ fs.appendFile('./data.csv', allRoomlistRecords, err => {
 // file.end();
 
 
+client.batch(allRoomlistRecords, (err, result) => {
+  !err ? console.log('Number of rows inserted',result) : console.log('seeding failed', err) 
+});
+  
+
+
 console.timeEnd('generate data');
+
+
+
+
+

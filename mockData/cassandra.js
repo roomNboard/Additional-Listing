@@ -1,9 +1,15 @@
 var cassandra = require('cassandra-driver');
 var async = require('async');
+var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'addtionallisting'});
+var createRoomlistRecords = require('./cassDataGeneration.js')
 
+const allRoomlistRecords = createRoomlistRecords(columnData);
 
-INSERT INTO additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urlToImage)
-VALUES (1, 334389,'Felis',653,4,1,410,'Entire Guest Suite','T', 
-  ['https://s3-us-west-1.amazonaws.com/roomsnboard/images189.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images561.jpg'])
+console.log(allRoomlistRecords);
 
+// function() {
+//   client.batch(
+//     !err ? console.log('Number of rows inserted',result.length) : console.log('seeding failed') 
+//   })
+//   }
 // select * from additionallisting.properties;
