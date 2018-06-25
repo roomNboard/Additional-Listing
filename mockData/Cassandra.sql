@@ -12,11 +12,11 @@ CREATE TABLE Properties (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE images (
-  id SERIAL PRIMARY KEY,
-  property_Id int REFERENCES properties(id),
-  urlToImage varchar(255)
-);
+-- CREATE TABLE images (
+--   id SERIAL PRIMARY KEY,
+--   property_Id int REFERENCES properties(id),
+--   urlToImage varchar(255)
+-- );
 
 
 COPY additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urltoimage)

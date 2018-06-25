@@ -1,9 +1,7 @@
 const db = require('../database/index.js');
 const fs = require('fs');
-var cassandra = require('cassandra-driver');
-const file = fs.createWriteStream('data1.csv');
-var async = require('async');
-var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'additionallisting'});
+const { Console } = require('console');
+const file = fs.createWriteStream('imgs.csv');
 
 console.time('generate data')
 
@@ -20,9 +18,9 @@ const getNumberForAllEntries = (min, max, numberOfEntries) => {
 const getRoomPicUrl = (numberOfEntries) => {
   const allUrls = [];
   for (let i = 0; i < numberOfEntries; i++) {
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 6; j++) {
       const imgNum = getRandomInteger(1, 655);
-      allUrls.push(`'https://s3-us-west-1.amazonaws.com/roomsnboard/images${imgNum}.jpg'`);
+      allUrls.push(`https://s3-us-west-1.amazonaws.com/roomsnboard/images${imgNum}.jpg`);
     }
   }
   return allUrls;
@@ -67,12 +65,12 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
       outputWords.push(words[getRandomInteger(0, numberOfRandomWords - 1)]);
     }
     outputWords = outputWords.join(' ');
-    allWords.push(`'${outputWords}'`);
+    allWords.push(outputWords);
   }
   return allWords;
 };
-const numOfRecords = 200000;
-let startId = 9800001;
+const numOfRecords = 500000;
+let startId = 10000001;
 
 const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
 const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
@@ -83,7 +81,7 @@ const allNumberOfReviews = getNumberForAllEntries(0, 500, numOfRecords );
 const allRoomTypes = getWordsForAllEntries(roomTypes, numOfRecords, 1);
 const allInstantBooks = getWordsForAllEntries(trueFalse, numOfRecords, 1);
 
-const allUrls = getRoomPicUrl(1);
+const allUrls = getRoomPicUrl(numOfRecords);
 
 const columnData = [
   regionId,
@@ -99,25 +97,57 @@ const columnData = [
 const createRoomlistRecords = (columns) => {
   let records='';
   for (let i = 0; i < columns[0].length; i++) {
-    const record = [startId + i];
+    const record = [];
     columns.forEach((column) => {
       record.push(column[i]);
     });
-    let imgUrls = getRoomPicUrl(1);
-    // records.push(
-      // `INSERT INTO additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urlToImage) VALUES (${record.join(',')},[${imgUrls}])`);
-    // )}
-    records = records + `\n${record.join(',')},"[${imgUrls}]"`
+    records = `${records}\n${record.join(',')}`;
   }
   return records;
 };
 
 
-const allRoomlistRecords = createRoomlistRecords(columnData);
+const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) => {
+  let records = '';
+  let urlNumber = 0;
+  for (let i = startId; i <= numberOfEntries + startId -1; i++) {
+    for (let j = 0; j < numberOfPicturesPerListing; j++) {
+      const record = [];
+      record.push(i);
+      record.push(urls[urlNumber]);
+      urlNumber += 1;
+      records = `${records}\n${record.join(',')}`;
+    }
+  }
+  return records;
+};
 
-file.write(allRoomlistRecords);
-file.end();
+// const allRoomlistRecords = createRoomlistRecords(columnData);
+
+
+// db.insertRoomlistRecords(allRoomlistRecords);
+// db.insertImagesRecords(allImagesRecords);
+
+//generate and write to csv file 4M records
+// fs.appendFile('./data1.csv', allRoomlistRecords, err => {
+  //   err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+  // })
+  
+  // //generate and write to csv file .5M records
+
+let allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
+fs.appendFile('./imgs1.csv', allImagesRecords, err => {
+  err ? console.log('write file failed =======',err) : console.log('succesfully write file to csv file')
+})
+
+
+
+
+
+
+
+// file.write(allImagesRecords);
+// file.end();
 
 
 console.timeEnd('generate data');
-
