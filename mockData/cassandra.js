@@ -1,7 +1,6 @@
 var cassandra = require('cassandra-driver');
 var async = require('async');
 var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'addtionallisting'});
-var createRoomlistRecords = require('./cassDataGeneration.js')
 
 const allRoomlistRecords = createRoomlistRecords(columnData);
 

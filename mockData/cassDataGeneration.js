@@ -1,6 +1,7 @@
 const db = require('../database/index.js');
 const fs = require('fs');
 var cassandra = require('cassandra-driver');
+const file = fs.createWriteStream('data1.csv');
 var async = require('async');
 var client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'additionallisting'});
 
@@ -70,8 +71,8 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
-const numOfRecords = 3;
-let startId = 10000001;
+const numOfRecords = 200000;
+let startId = 9800001;
 
 const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
 const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
@@ -96,15 +97,17 @@ const columnData = [
 ];
 
 const createRoomlistRecords = (columns) => {
-  let records=[];
-  for (let i = 1; i < columns[0].length; i++) {
-    const record = [i];
+  let records='';
+  for (let i = 0; i < columns[0].length; i++) {
+    const record = [startId + i];
     columns.forEach((column) => {
       record.push(column[i]);
     });
     let imgUrls = getRoomPicUrl(1);
-    records.push(
-      `INSERT INTO additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urlToImage) VALUES (${record.join(',')},[${imgUrls}])`);
+    // records.push(
+      // `INSERT INTO additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urlToImage) VALUES (${record.join(',')},[${imgUrls}])`);
+    // )}
+    records = records + `\n${record.join(',')},"[${imgUrls}]"`
   }
   return records;
 };
@@ -122,19 +125,15 @@ const allRoomlistRecords = createRoomlistRecords(columnData);
 // console.log(allRoomlistRecords);
 
 
-// file.write(allImagesRecords);
-// file.end();
+file.write(allRoomlistRecords);
+file.end();
 
 
-client.batch(allRoomlistRecords, (err, result) => {
-  !err ? console.log('Number of rows inserted',result) : console.log('seeding failed', err) 
-});
+// client.batch(allRoomlistRecords, (err, result) => {
+//   !err ? console.log('Number of rows inserted',result) : console.log('seeding failed', err) 
+// });
   
 
 
 console.timeEnd('generate data');
-
-
-
-
 
