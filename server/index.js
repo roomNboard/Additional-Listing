@@ -1,7 +1,8 @@
-import { CONNREFUSED } from 'dns';
+// import { CONNREFUSED } from 'dns';
 
 const express = require('express');
 const db = require('../database/index.js');
+const cassDB =require('../database/cassandra.js');
 const path = require('path');
 
 const app = express();
@@ -32,6 +33,8 @@ app.use((req, res, next) => {
 
 app.get('/filterListings/getRooms', (req, res) => {
   db.getAllRoomlistRecords(res.send.bind(res));
+  //======require addition work to send result back to client=====//
+  // cassDB.getListingsById(param.id);
 });
 
 app.get('/filterListings/getImages', (req, res) => {

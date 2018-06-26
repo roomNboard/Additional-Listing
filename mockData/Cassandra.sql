@@ -9,8 +9,8 @@ CREATE TABLE Properties (
   roomType varchar,
   instantBook varchar,
   urlToImage list <text>,
-  PRIMARY KEY (id)
-);
+  PRIMARY KEY (id,region_id, rating, roomType, price)
+)WITH CLUSTERING ORDER BY (region_id DESC, rating DESC, roomType ASC, price ASC);
 
 -- CREATE TABLE images (
 --   id SERIAL PRIMARY KEY,
@@ -20,4 +20,4 @@ CREATE TABLE Properties (
 
 
 COPY additionallisting.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urltoimage)
-FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/data.csv'  with header=true;
+FROM '/Users/xuec/HackReactor/SDC/Additional-Listing/mockData/data.csv';

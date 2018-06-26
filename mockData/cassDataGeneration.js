@@ -22,7 +22,7 @@ const getRoomPicUrl = (numberOfEntries) => {
   for (let i = 0; i < numberOfEntries; i++) {
     for (let j = 0; j < 5; j++) {
       const imgNum = getRandomInteger(1, 655);
-      allUrls.push(`'https://s3-us-west-1.amazonaws.com/roomsnboard/images${imgNum}.jpg'`);
+      allUrls.push(`'images${imgNum}.jpg'`);
     }
   }
   return allUrls;
@@ -55,7 +55,7 @@ const loremIpsum = [
 
 const roomTypes = ['Entire House', 'Entire Apartment', 'Entire Guest Suite', 'Entire Guest House', 'Private Room', 'Shared Room'];
 
-const trueFalse = ['T', 'F'];
+const trueFalse = [1, 0];
 
 const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput) => {
   const allWords = [];
@@ -71,8 +71,8 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
-const numOfRecords = 200000;
-let startId = 9800001;
+const numOfRecords = 400000;
+let startId = 9600001;
 
 const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
 const allRoomNames = getWordsForAllEntries(loremIpsum, numOfRecords, 3);
@@ -81,7 +81,7 @@ const allNumberOfRooms = getNumberForAllEntries(1, 7, numOfRecords );
 const allRatings = getNumberForAllEntries(1, 5, numOfRecords );
 const allNumberOfReviews = getNumberForAllEntries(0, 500, numOfRecords );
 const allRoomTypes = getWordsForAllEntries(roomTypes, numOfRecords, 1);
-const allInstantBooks = getWordsForAllEntries(trueFalse, numOfRecords, 1);
+const allInstantBooks = getNumberForAllEntries(0, 1, numOfRecords );
 
 const allUrls = getRoomPicUrl(1);
 
@@ -120,4 +120,6 @@ file.end();
 
 
 console.timeEnd('generate data');
+
+
 
