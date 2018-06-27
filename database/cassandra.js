@@ -9,57 +9,63 @@ var getListingsById = function(id) {
 
   var regionId;
   var queryRegionId = `SELECT region_id FROM additionallisting.properties WHERE id = ${id}`;
-  client.execute(queryRegionId)
-    .then((result) => {
-        regionId = result.rows[0].region_id;
-        var queryListings = `SELECT * FROM additionallisting.properties WHERE region_id = ${regionId} allow filtering`;
-        client.execute(queryListings)
-          .then(result => console.log('number of listing: ',result.rows.length))
-          .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err))
-
-  // client.stream(queryRegionId)
-  //   .on('readable', function(){
-  //     let row;
-  //     while (row = this.read()) {
-  //       regionId = row.region_id;
-  //       var queryListings = `SELECT * FROM additionallisting.properties WHERE region_id = ${regionId}`;
-  //       client.stream(queryListings)
-  //         .on('readable', function() {
-  //           console.log(this.read());
+  // client.execute(queryRegionId)
+  //   .then((result) => {
+  //       regionId = result.rows[0].region_id;
+  //       var queryListings = `SELECT * FROM additionallisting.properties WHERE region_id = ${regionId} allow filtering`;
+  //       client.execute(queryListings)
+  //         .then(result => {
+  //           console.log('number of listing: ',result.rows.length)
+  //           console.timeEnd('query time');
+        
   //         })
-  //         .on('error', function(err) {
-  //           console.log('stream failed', err)
-  //         });
-  //     }
+  //         .catch(err => console.log(err))
   //   })
-  //   .on('end', function() {
-  //     console.log('end of stream')
-  //   })
-  //   .on('error', function(err) {
-  //     console.log('stream failed', err)
-  //   });
-  console.timeEnd('query time');
+  //   .catch(err => console.log(err))
+
+  client.stream(queryRegionId)
+    .on('readable', function(){
+      let row;
+      while (row = this.read()) {
+        regionId = row.region_id;
+        var queryListings = `SELECT * FROM additionallisting.properties WHERE region_id = ${regionId} allow filtering`;
+        client.stream(queryListings)
+          .on('readable', function() {
+            console.log(this.read());
+            console.timeEnd('query time');
+          })
+          .on('error', function(err) {
+            console.log('stream failed', err)
+          });
+      }
+    })
+    .on('end', function() {
+      console.log('end of stream')
+     
+    })
+    .on('error', function(err) {
+      console.log('stream failed', err)
+    });
+
 }
 
 var addListing = function(listing) {
   console.time('add listing')
   var insertListing = `INSERT INTO additionalListing.properties (id,region_id,propertyname,price,numberOfBedrooms,rating,numberOfReviews,roomType,instantBook,urltoimage) VALUES (${listing})`
   // var insertListing =[{query: insertQuery, params: listing}]
-  console.timeEnd('add listing')
   client.execute(insertListing)
-    .then(result => {
-      console.log('Added listing to database')
+  .then(result => {
+    console.timeEnd('add listing')
+    console.log('Added listing to database')
     })
     .catch(err => console.log(err))
 }
 
-var newListing =  `10000003,342198,'Mattis Nisi',730,7,4,84,'Entire Guest House','F',['https://s3-us-west-1.amazonaws.com/roomsnboard/images546.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images316.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images330.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images366.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images350.jpg']`;
+var newListing =  `10000004,342198,'Mattis Nisi',730,7,4,84,'Entire Guest House','F',['https://s3-us-west-1.amazonaws.com/roomsnboard/images546.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images316.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images330.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images366.jpg','https://s3-us-west-1.amazonaws.com/roomsnboard/images350.jpg']`;
 
 
 // addListing(newListing);
-getListingsById(2);
+getListingsById(9000003);
 
 module.exports= {getListingsById};
 

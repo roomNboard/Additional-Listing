@@ -69,7 +69,7 @@ const getWordsForAllEntries = (words, numberOfEntries, maxNumberOfWordsInOutput)
   }
   return allWords;
 };
-const numOfRecords = 500000;
+const numOfRecords = 5;
 let startId = 10000001;
 
 const regionId = getNumberForAllEntries(1, 400000, numOfRecords )
@@ -122,23 +122,23 @@ const createImagesRecords = (numberOfEntries, numberOfPicturesPerListing, urls) 
   return records;
 };
 
-// const allRoomlistRecords = createRoomlistRecords(columnData);
+const allRoomlistRecords = createRoomlistRecords(columnData);
 
 
 // db.insertRoomlistRecords(allRoomlistRecords);
 // db.insertImagesRecords(allImagesRecords);
 
 //generate and write to csv file 4M records
-// fs.appendFile('./data1.csv', allRoomlistRecords, err => {
-  //   err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
-  // })
+fs.appendFile('./data.csv', allRoomlistRecords, err => {
+    err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+  })
   
   // //generate and write to csv file .5M records
 
-let allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
-fs.appendFile('./imgs1.csv', allImagesRecords, err => {
-  err ? console.log('write file failed =======',err) : console.log('succesfully write file to csv file')
-})
+// let allImagesRecords = createImagesRecords(numOfRecords, 5, allUrls);
+// fs.appendFile('./imgs1.csv', allImagesRecords, err => {
+//   err ? console.log('write file failed =======',err) : console.log('succesfully write file to csv file')
+// })
 
 
 
