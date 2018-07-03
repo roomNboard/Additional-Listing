@@ -2,9 +2,16 @@
 npm
 npm-debug.log
 node_modules/
-data.csv
+mockData/data.csv
 data1.csv
 data2.csv
 imgs.csv
 data.csv
 imgs1.csv
+.babelrc
+.nyc_output/
+coverage/
+newrelic.js
+newrelic_agent.log
+output.json
+output.json.html

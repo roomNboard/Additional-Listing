@@ -129,9 +129,9 @@ const allRoomlistRecords = createRoomlistRecords(columnData);
 // db.insertImagesRecords(allImagesRecords);
 
 //generate and write to csv file 4M records
-fs.appendFile('./data.csv', allRoomlistRecords, err => {
-    err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
-  })
+// fs.appendFile('./data.csv', allRoomlistRecords, err => {
+//     err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+//   })
   
   // //generate and write to csv file .5M records
 
@@ -141,7 +141,11 @@ fs.appendFile('./data.csv', allRoomlistRecords, err => {
 // })
 
 
+var ids = getNumberForAllEntries(1, 10000000, 100);
 
+fs.appendFile('./data.csv', ids, err => {
+  err ? console.log('write file failed =======',err) : console.log('succesfully write file to data.csv')
+})
 
 
 

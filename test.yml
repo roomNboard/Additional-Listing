@@ -1,0 +1,28 @@
+config:
+  target: 'http://localhost:3009'
+  phases:
+    - duration: 20
+      arrivalRate: 10
+    - duration: 30
+      arrivalRate: 10
+      rampTo: 50
+    # - duration: 60
+    #   arrivalRate: 50
+    #   rampTo: 100
+    # - duration: 90
+    #   arrivalRate: 100
+    #   rampTo: 300
+    # - duration: 90
+    #   arrivalRate: 500
+    #   rampTo: 1000
+scenarios:
+  - flow:
+    - loop: 
+      - get:
+          url: "/9900000/listing"
+          # url: "/{{ $randomNumber(80000000, 10000000) }}/listing"
+      count: 100
+
+      
+      
+    

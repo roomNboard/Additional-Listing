@@ -2,5 +2,10 @@
     "presets": [
         "env", "react"
     ],
+    "env": {
+        "test": {
+          "plugins": ["istanbul"]
+        }
+    },
     "plugins": ["transform-object-rest-spread"]
 }
