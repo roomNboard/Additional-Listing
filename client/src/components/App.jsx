@@ -49,9 +49,11 @@ class App extends React.Component {
   // =======WILL UNCOMMENT BELOW LATER---USING MOCK DATA DURING DEVELOPMENT======
 
   componentDidMount() {
-    this.fetch('/filterListings/getImages', 'allImages');
-    this.fetch('/filterListings/getRooms', 'allRooms')
-      .then((data) => { this.setDisplayedRooms(data); });
+    // this.fetch('/filterListings/getImages', 'allImages');
+    // this.fetch('/filterListings/getRooms', 'allRooms')
+    //   .then((data) => { this.setDisplayedRooms(data); });
+    this.fetch('/:id/listing', 'allRooms');
+
   }
 
   // Helper function for PriceSlider Component
